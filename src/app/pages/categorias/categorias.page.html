@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <div class="logo-title ion-padding">
+      <img src="/assets/images/header.png" routerLink="/">
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding bg-gradient">
+  <ion-grid>
+    <ion-row>
+      @for (skin of skinsList; track skin.weapon.id){
+        <ion-col  size="6">
+          <ion-card class="bg-card">
+            <ion-card-header>
+              <img [src]="skin.image" alt="">
+            </ion-card-header>
+            <ion-card-content >
+              <ion-card-title class="card-content">{{skin.name}}</ion-card-title>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      }
+    </ion-row>
+  </ion-grid>
+</ion-content>

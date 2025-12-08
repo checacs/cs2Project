@@ -1,0 +1,45 @@
+.logo-title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo-title img{
+  height: 70px;
+  display: flex;
+  border-radius: 5px;
+}
+
+ion-header ion-toolbar{
+  --background: #F4C581FF;
+}
+.bg-gradient {
+  --background: linear-gradient(
+      360deg,
+      #52599FFF,
+      #D8B488FF
+  );
+}
+.card-content{
+  font-size: 12px;
+}
+.transparent-col{
+  background: transparent !important;
+}
+.bg-card{
+  background: transparent !important;
+  border: solid 2px black;
+}
+
+.center-button{
+  display: flex;
+  justify-content: center;
+  ;
+
+}
+.boton-transparent{
+  --background: transparent;
+
+}
+.img-botones{
+  border-radius: 5px;
+}
