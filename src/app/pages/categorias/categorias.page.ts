@@ -93,7 +93,7 @@ export class CategoriasPage implements OnInit {
   protected loadMore(event: any) {
     event.target.complete();
     if (this.skinsListAux.length > 10) {
-      this.skinsList.push(...this.skinsListAux.splice(0,15));
+      this.skinsList.push(...this.skinsListAux.splice(0,5));
     }else {
       this.skinsList.push(...this.skinsListAux);
       event.target.disable = true;
