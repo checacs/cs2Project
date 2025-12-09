@@ -2,17 +2,20 @@ import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
+  IonAvatar, IonButton,
+  IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader, IonCardTitle, IonCol,
-  IonContent, IonGrid,
-  IonHeader, IonRouterLink, IonRow,
+  IonContent, IonFooter, IonGrid,
+  IonHeader, IonImg, IonInfiniteScroll, IonInfiniteScrollContent, IonMenuToggle, IonModal, IonRouterLink, IonRow,
   IonToolbar,
 } from '@ionic/angular/standalone';
 import {DataService} from "../../services/data-service";
 import {ToastService} from "../../services/toast-service";
 import {APIcsSkins} from "../../common/interfaces";
 import { RouterModule, ActivatedRoute } from '@angular/router';
+import {MenuComponent} from "../../components/menu/menu.component";
 
 
 @Component({
@@ -23,7 +26,7 @@ import { RouterModule, ActivatedRoute } from '@angular/router';
 
   imports: [IonContent, IonHeader, IonToolbar, CommonModule, FormsModule,
     IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonGrid,
-    IonRouterLink, IonRow, RouterModule]
+    IonRouterLink, IonRow, RouterModule, IonInfiniteScroll, IonInfiniteScrollContent, IonButtons, IonMenuToggle, IonAvatar, IonImg, MenuComponent, IonModal, IonFooter, IonButton]
 
 })
 export class CategoriasPage implements OnInit {
@@ -72,8 +75,9 @@ export class CategoriasPage implements OnInit {
           }else{
             this.skinsList = data;
           }
-          this.skinsList = this.skinsList.splice(0, 40);
-          this.toastService.mostrarToast('skinsList cargada correctamente!', 'success', 1200, "bottom");
+
+          this.skinsList = this.skinsListAux.splice(0, 40);
+          this.toastService.mostrarToast('skinsList cargada correctamente!', 'primary', 1200, "bottom");
         },
         error:(err) =>{
           console.error(err);
@@ -81,5 +85,18 @@ export class CategoriasPage implements OnInit {
       }
     )
   }
-
+  addFavoritos(id: string){
+    this.dataService.addFavorito(id);
+    this.toastService.mostrarToast('Arma añadida correctamente a Favoritos!',
+      'success', 1200, "bottom");
+  }
+  protected loadMore(event: any) {
+    event.target.complete();
+    if (this.skinsListAux.length > 10) {
+      this.skinsList.push(...this.skinsListAux.splice(0,15));
+    }else {
+      this.skinsList.push(...this.skinsListAux);
+      event.target.disable = true;
+    }
+  }
 }

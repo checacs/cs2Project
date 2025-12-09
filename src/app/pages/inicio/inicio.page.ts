@@ -42,4 +42,8 @@ export class InicioPage implements OnInit {
   protected abrirCategoria(type: string) {
     this.router.navigate(['/categorias', type]);
   }
+
+
 }
+
+

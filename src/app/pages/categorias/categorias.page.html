@@ -1,15 +1,45 @@
 <ion-header>
+
   <ion-toolbar>
     <div class="logo-title ion-padding">
       <img src="/assets/images/header.png" routerLink="/">
     </div>
+    <ion-buttons slot="end">
+      <ion-menu-toggle menu="menu-lateral">
+        <ion-avatar>
+          <ion-img src="/assets/images/cs2Menu.jpg"></ion-img>
+        </ion-avatar>
+      </ion-menu-toggle>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding bg-gradient">
+
   <ion-grid>
     <ion-row>
       @for (skin of skinsList; track skin.weapon.id){
+        <ion-modal #modal trigger="idmodal">
+          <ng-template>
+            <ion-content>
+              <ion-card>
+                <ion-img [src]="skin.image" class="ion-padding"></ion-img>
+                <ion-card-content>
+                  <ion-card-title>{{skin.name}}</ion-card-title>
+                  <h2>Stattrak: {{skin.stattrak.toString()}}</h2>
+                  <p>{{skin.weapon.id}}</p>
+                </ion-card-content>
+              </ion-card>
+              <ion-footer>
+                <ion-toolbar>
+                  <ion-buttons slot="start">
+                    <ion-button (click)="addFavoritos(skin.id)"></ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-footer>
+            </ion-content>
+          </ng-template>
+        </ion-modal>
         <ion-col  size="6">
           <ion-card class="bg-card">
             <ion-card-header>
@@ -23,4 +53,7 @@
       }
     </ion-row>
   </ion-grid>
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loading-spinner="dots"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
