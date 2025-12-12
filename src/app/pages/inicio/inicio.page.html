@@ -9,77 +9,101 @@
 <ion-content class="ion-padding bg-gradient">
   <ion-grid>
     <ion-row class="">
-      <ion-col class="transparent-col">
+      <ion-col>
+        <ion-item class="items-transparente">
+          <ion-buttons (click)="abrirCategoria('Rifles')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
                 <img class="img-botones" src="/assets/images/categoria-rifles.png" alt="Categoria Rifles">
               </ion-card-header>
               <ion-card-content class="center-button">
-                <ion-button (click)="abrirCategoria('Rifles')" class="boton-transparent">
+                <ion-button >
                   <ion-card-title class="card-content">Rifles</ion-card-title>
                 </ion-button>
               </ion-card-content>
             </ion-card>
-        </ion-col>
-      <ion-col class="transparent-col">
+          </ion-buttons>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item class="items-transparente">
+          <ion-buttons (click)="abrirCategoria('Pistols')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
                 <img class="img-botones" src="/assets/images/categoria-pistolas.png" alt="Categoria Pistolas">
               </ion-card-header>
               <ion-card-content class="center-button">
-                <ion-button (click)="abrirCategoria('Pistols')" class="boton-transparent">
+
                 <ion-card-title class="card-content">Pistolas</ion-card-title>
-                </ion-button>
+
               </ion-card-content>
             </ion-card>
+          </ion-buttons>
+        </ion-item>
+
       </ion-col>
-      <ion-col class="transparent-col">
+      <ion-col>
+        <ion-item class="items-transparente">
+          <ion-buttons (click)="abrirCategoria('SMGs')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
-                <img class="img-botones" src="/assets/images/categoria-smgs.png" alt="Categoria Rifles">
+                <img class="img-botones" src="/assets/images/categoria-smgs.png" alt="Categoria Smgs">
               </ion-card-header>
               <ion-card-content class="center-button">
-                <ion-button (click)="abrirCategoria('SMGs')" class="boton-transparent">
-                  <ion-card-title class="card-content">SMGs</ion-card-title>
-                </ion-button>
+
+                <ion-card-title class="card-content">SMGs</ion-card-title>
+
               </ion-card-content>
             </ion-card>
-        </ion-col>
-      <ion-col class="transparent-col">
+          </ion-buttons>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item class="items-transparente">
+          <ion-buttons (click)="abrirCategoria('Knives')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
-                <img class="img-botones" src="/assets/images/categoria-cuchillos.png" alt="Categoria Pistolas">
+                <img class="img-botones" src="/assets/images/categoria-cuchillos.png" alt="Categoria Cuhillos">
               </ion-card-header>
               <ion-card-content class="center-button">
-                <ion-button (click)="abrirCategoria('Knives')" class="boton-transparent">
                 <ion-card-title class="card-content">Cuchillos</ion-card-title>
-                </ion-button>
+
               </ion-card-content>
             </ion-card>
+          </ion-buttons>
+        </ion-item>
       </ion-col>
-      <ion-col class="transparent-col">
+      <ion-col>
+        <ion-item class="items-transparente">
+          <ion-buttons (click)="abrirCategoria('Gloves')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
-                <img class="img-botones" src="/assets/images/categoria-guantes.png" alt="Categoria Pistolas">
+                <img class="img-botones" src="/assets/images/categoria-guantes.png" alt="Categoria Guantes">
               </ion-card-header>
               <ion-card-content class="center-button">
-                <ion-button (click)="abrirCategoria('Gloves')" class="boton-transparent">
+
                 <ion-card-title class="card-content">Guantes</ion-card-title>
-                </ion-button>
+
               </ion-card-content>
             </ion-card>
+          </ion-buttons>
+        </ion-item>
       </ion-col>
-      <ion-col class="transparent-col">
+      <ion-col>
+        <ion-item class="items-transparente">
+          <ion-buttons (click)="abrirCategoria('Heavy')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
-                <img class="img-botones" src="/assets/images/categoria-heavy.png" alt="Categoria Pistolas">
+                <img class="img-botones" src="/assets/images/categoria-heavy.png" alt="Categoria Heavy">
               </ion-card-header>
               <ion-card-content class="center-button">
-                <ion-button (click)="abrirCategoria('Heavy')" class="boton-transparent">
+
                 <ion-card-title class="card-content">Cajas</ion-card-title>
-                </ion-button>
+
               </ion-card-content>
             </ion-card>
+          </ion-buttons>
+        </ion-item>
       </ion-col>
     </ion-row>
   </ion-grid>

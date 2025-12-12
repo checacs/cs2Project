@@ -22,24 +22,28 @@ ion-header ion-toolbar{
 .card-content{
   font-size: 12px;
 }
-.transparent-col{
+.transparent-col {
   background: transparent !important;
-}
-.bg-card{
-  background: transparent !important;
-  border: solid 2px black;
-}
-
-.center-button{
-  display: flex;
-  justify-content: center;
-;
 
 }
-.boton-transparent{
-  --background: transparent;
+
+ion-item {
+  --background: transparent !important;
 
 }
-.img-botones{
-  border-radius: 5px;
+ion-modal{
+  --border-radius: 15px;
+  --height: 50vh;
+  --width: 68vw;
+
 }
+ion-modal ion-card{
+  --border-radius: 15px;
+
+}
+.img-icon-list{
+  width: 120px;
+  height: 90px;
+
+}
+

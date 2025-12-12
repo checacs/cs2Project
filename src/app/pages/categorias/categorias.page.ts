@@ -2,13 +2,15 @@ import {Component, inject, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonAvatar, IonButton,
+  IonAvatar, IonBackButton, IonButton,
   IonButtons,
   IonCard,
   IonCardContent,
   IonCardHeader, IonCardTitle, IonCol,
   IonContent, IonFooter, IonGrid,
-  IonHeader, IonImg, IonInfiniteScroll, IonInfiniteScrollContent, IonMenuToggle, IonModal, IonRouterLink, IonRow,
+  IonHeader, IonIcon, IonImg, IonInfiniteScroll, IonInfiniteScrollContent,
+  IonItem, IonItemSliding, IonLabel, IonList, IonMenuToggle, IonModal,
+  IonRouterLink, IonRow, IonThumbnail,
   IonToolbar,
 } from '@ionic/angular/standalone';
 import {DataService} from "../../services/data-service";
@@ -25,8 +27,11 @@ import {MenuComponent} from "../../components/menu/menu.component";
   standalone: true,
 
   imports: [IonContent, IonHeader, IonToolbar, CommonModule, FormsModule,
-    IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonCol, IonGrid,
-    IonRouterLink, IonRow, RouterModule, IonInfiniteScroll, IonInfiniteScrollContent, IonButtons, IonMenuToggle, IonAvatar, IonImg, MenuComponent, IonModal, IonFooter, IonButton]
+    IonCard, IonCardContent, IonCardHeader, IonCardTitle,
+    IonRouterLink, RouterModule, IonInfiniteScroll,
+    IonInfiniteScrollContent, IonButtons, IonMenuToggle, IonImg,
+    IonModal, IonFooter, IonButton, IonItem, IonBackButton, IonItemSliding,
+    IonLabel, IonList, IonThumbnail]
 
 })
 export class CategoriasPage implements OnInit {
@@ -41,8 +46,9 @@ export class CategoriasPage implements OnInit {
   type!: string;
 //sin esto no podriamos utilizar el snapshot del ngOnInit
   private readonly route = inject(ActivatedRoute);
-
-  constructor() {}
+  data = Array(30);
+  constructor() {
+  }
 
   ngOnInit() {
     this.type = this.route.snapshot.params['type'];
@@ -76,7 +82,6 @@ export class CategoriasPage implements OnInit {
             this.skinsList = data;
           }
 
-          this.skinsList = this.skinsListAux.splice(0, 40);
           this.toastService.mostrarToast('skinsList cargada correctamente!', 'primary', 1200, "bottom");
         },
         error:(err) =>{
@@ -91,12 +96,8 @@ export class CategoriasPage implements OnInit {
       'success', 1200, "bottom");
   }
   protected loadMore(event: any) {
+    this.data.push(...Array(30));
     event.target.complete();
-    if (this.skinsListAux.length > 10) {
-      this.skinsList.push(...this.skinsListAux.splice(0,5));
-    }else {
-      this.skinsList.push(...this.skinsListAux);
-      event.target.disable = true;
-    }
+
   }
 }

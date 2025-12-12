@@ -21,9 +21,15 @@ ion-header ion-toolbar{
 }
 .card-content{
   font-size: 12px;
+
 }
 .transparent-col{
   background: transparent !important;
+  --ion-item-background: transparent !important;
+  --background-focused: transparent !important;
+  --background-hover: transparent !important;
+  --background-activated: transparent !important;
+  --background-selected: transparent !important;
 }
 .bg-card{
   background: transparent !important;
@@ -43,3 +49,11 @@ ion-header ion-toolbar{
 .img-botones{
   border-radius: 5px;
 }
+.items-transparente{
+  background: transparent !important;
+  --ion-item-background: transparent !important;
+  --background-focused: transparent !important;
+  --background-hover: transparent !important;
+  --background-activated: transparent !important;
+  --background-selected: transparent !important;
+ }

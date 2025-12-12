@@ -7,7 +7,7 @@ import {
   IonContent, IonGrid,
   IonHeader,
   IonIcon,
-  IonImg, IonList, IonRouterLink, IonRow,
+  IonImg, IonItem, IonList, IonRouterLink, IonRow,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -23,7 +23,7 @@ import {Router} from "@angular/router";
   standalone: true,
   imports: [IonContent, IonHeader, IonToolbar, CommonModule, FormsModule,
     IonRouterLink, IonGrid, IonRow, IonCol, IonCard, IonCardHeader,
-    IonCardContent, IonCardTitle, IonButton, IonCardSubtitle]
+    IonCardContent, IonCardTitle, IonButton,IonItem, IonButtons]
 })
 export class InicioPage implements OnInit {
   private readonly dataService: DataService = inject(DataService);
