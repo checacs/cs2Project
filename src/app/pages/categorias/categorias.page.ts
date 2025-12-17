@@ -10,12 +10,12 @@ import {
   IonContent, IonFooter, IonGrid,
   IonHeader, IonIcon, IonImg, IonInfiniteScroll, IonInfiniteScrollContent,
   IonItem, IonItemSliding, IonLabel, IonList, IonMenuToggle, IonModal,
-  IonRouterLink, IonRow, IonThumbnail,
+  IonRouterLink, IonRow, IonSearchbar, IonThumbnail,
   IonToolbar,
 } from '@ionic/angular/standalone';
 import {DataService} from "../../services/data-service";
 import {ToastService} from "../../services/toast-service";
-import {APIcsSkins} from "../../common/interfaces";
+import {APIcsSkins, Skins} from "../../common/interfaces";
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import {MenuComponent} from "../../components/menu/menu.component";
 
@@ -31,26 +31,40 @@ import {MenuComponent} from "../../components/menu/menu.component";
     IonRouterLink, RouterModule, IonInfiniteScroll,
     IonInfiniteScrollContent, IonButtons, IonMenuToggle, IonImg,
     IonModal, IonFooter, IonButton, IonItem, IonBackButton, IonItemSliding,
-    IonLabel, IonList, IonThumbnail]
+    IonLabel, IonList, IonThumbnail, IonSearchbar]
 
 })
 export class CategoriasPage implements OnInit {
   private readonly dataService: DataService = inject(DataService);
   private readonly toastService: ToastService = inject(ToastService);
-  skinsList: APIcsSkins = [];
-  skinsListAux: APIcsSkins = [];
+  private readonly route = inject(ActivatedRoute);
+
+  /*Estas dos variables las utilizamos tanto para la funcion de buscar como en loadCsSkins y la funcion
+   loadMore del InfScr*/
+  skinsList: Skins[] = [];
+  skinsListOriginal: Skins[] = [];
+
+
+  pageSize = 20;
+  paginaActual = 0;
+  textoBuscar = '';
+
+
+  constructor() {
+  }
+
   /*esta es la variable con la que recogemos el typo de categoria. Luego en el
   app.route.ts  en el path de categorias tenemos que incluirle :type que indica
   el tipo de categoria que tiene que listar
   * */
   type!: string;
 //sin esto no podriamos utilizar el snapshot del ngOnInit
-  private readonly route = inject(ActivatedRoute);
-  data = Array(30);
-  constructor() {
-  }
 
+
+  /*Rescuerda que el ngOnInit es secuencial*/
   ngOnInit() {
+    /*Esto viene de app.routes.ts y saca el valor de "type" y dice, por ejemplo, que el valor recogido 'Rifles'
+    lo convierte en this.type("this.type = 'Rifles' ") o el valor 'Knives' lo convierte en "this.type = 'Knives' "*/
     this.type = this.route.snapshot.params['type'];
     this.loadCsSkins();
 
@@ -60,29 +74,44 @@ export class CategoriasPage implements OnInit {
     this.dataService.getCsSkins().subscribe(
       {
         next: data => {
+          /*Creamos esta variable estatica para poder actualizar las listas de Skins de la funcion "buscar"
+           del search-bar*/
+          let filtradas: Skins[] = [];
+
+          /*Estos son los condicionales que dependiendo del valor de this.type lo filtra y carga la categoria.name
+           segun el valor filtrado del "this.type"*/
           if (this.type === 'Rifles'){
-            this.skinsList = data.filter(skin =>
+            filtradas = data.filter(skin =>
               skin.category.name ==='Rifles');
           }else if (this.type ==='Pistols'){
-            this.skinsList = data.filter(skin =>
+            filtradas = data.filter(skin =>
             skin.category.name ==='Pistols');
           }else if (this.type ==='Knives'){
-            this.skinsList = data.filter(skin =>
+            filtradas = data.filter(skin =>
             skin.category.name ==='Knives');
           }else if (this.type ==='SMGs'){
-            this.skinsList = data.filter(skin =>
+            filtradas = data.filter(skin =>
             skin.category.name ==='SMGs');
           }else if (this.type ==='Gloves'){
-            this.skinsList = data.filter(skin =>
+            filtradas = data.filter(skin =>
             skin.category.name ==='Gloves');
           }else if (this.type ==='Heavy'){
-            this.skinsList = data.filter(skin =>
+            filtradas = data.filter(skin =>
             skin.category.name ==='Heavy');
-          }else{
+          }else if (this.type ==='SMGs'){
             this.skinsList = data;
           }
+          /*Aqui actualizamos las listas Skin[] con la info guardada en "filtradas" con el nombre del arma*/
+          this.skinsListOriginal = filtradas;
+          /*con esto indicamos que muestre los 20 primeros valores, y el resto se guardan, de skinsListOriginal
+          y actualizamos en skinsList y que luego utilizaremos en el loadMore para cargar de 20 en 20 elementos*/
+          this.skinsList = this.skinsListOriginal.slice(0,this.pageSize);
+          /*y aqui decimos que la pagina actual lleva 20 elementos*/
+          this.paginaActual = this.pageSize;
 
-          this.toastService.mostrarToast('skinsList cargada correctamente!', 'primary', 1200, "bottom");
+                                        //Esto recoge el valor de "this.type" seleccionado y lo muestra
+          this.toastService.mostrarToast(`Lista ${this.type} cargada correctamente!`, 'primary',
+            1200, "bottom");
         },
         error:(err) =>{
           console.error(err);
@@ -90,14 +119,39 @@ export class CategoriasPage implements OnInit {
       }
     )
   }
-  addFavoritos(id: string){
-    this.dataService.addFavorito(id);
+  addFavoritos(skin: Skins) {
+    this.dataService.addFavorito(skin);
     this.toastService.mostrarToast('Arma añadida correctamente a Favoritos!',
       'success', 1200, "bottom");
   }
   protected loadMore(event: any) {
-    this.data.push(...Array(30));
+    /*Aqui estamos diciendo que los elementos a mostrar son del 20 al 40(20 + 20) que son igual a un total de 20*/
+    const nextItems = this.skinsListOriginal.slice(this.paginaActual,this.paginaActual + this.pageSize);
+    /*Ahora le decimos que ponga los elementos nuevos junto a los que ya habian*/
+    this.skinsList = [...this.skinsList, ...nextItems];
+    /*ahora le indicamos que la pagina actual lleva 40 elementos*/
+    this.paginaActual += 20;
+
     event.target.complete();
+    /*Si ya no quedan mas elementos se deshabilita la función*/
+    if (this.paginaActual >= this.skinsListOriginal.length) {
+      event.target.disabled = true;
+    }
+
+  }
+  /*Cada vez que se escribe una letra en el buscador ionic lanza esta funcion*/
+  protected buscar(event: any) {
+    /*Esto recoge en la palabra texto el evento convertido en minusculas*/
+    const texto = event.detail.value?.toLowerCase() || '';
+    this.textoBuscar = texto;
+    /*Esto dice que si no hay nada escrito devuelve la skinsList con la info de skinsListOriginal*/
+    if (!texto) {
+      this.skinsList = this.skinsListOriginal;
+      return;
+    }
+    /*Pero si hay escrito en el buscador mira dentro de skinsListOriginal el "textoBuscar" y si existe muestra el valor
+    guardado en skinList*/
+    this.skinsList = this.skinsListOriginal.filter(skin => skin.name.includes(this.textoBuscar));
 
   }
 }

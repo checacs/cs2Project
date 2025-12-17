@@ -4,16 +4,18 @@ import { FormsModule } from '@angular/forms';
 import {
   IonAvatar, IonButton,
   IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol,
-  IonContent, IonGrid,
+  IonContent, IonFab, IonFabButton, IonFabList, IonGrid,
   IonHeader,
   IonIcon,
-  IonImg, IonItem, IonList, IonRouterLink, IonRow,
+  IonImg, IonItem, IonList, IonRouterLink, IonRow, IonSearchbar,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
 import {DataService} from "../../services/data-service";
 import {ToastService} from "../../services/toast-service";
 import {Router} from "@angular/router";
+import {addIcons} from "ionicons";
+import {add, addCircle, logoInstagram, logoTiktok, logoTwitter, logoX, logoYoutube} from "ionicons/icons";
 
 
 @Component({
@@ -23,22 +25,25 @@ import {Router} from "@angular/router";
   standalone: true,
   imports: [IonContent, IonHeader, IonToolbar, CommonModule, FormsModule,
     IonRouterLink, IonGrid, IonRow, IonCol, IonCard, IonCardHeader,
-    IonCardContent, IonCardTitle, IonButton,IonItem, IonButtons]
+    IonCardContent, IonCardTitle, IonButton, IonItem, IonButtons, IonFab, IonFabButton, IonFabList, IonIcon]
 })
 export class InicioPage implements OnInit {
   private readonly dataService: DataService = inject(DataService);
   private readonly toastService: ToastService = inject(ToastService);
 
+  /*Esta variable es la que sirve de puente entre la funcion abrirCategoria y el app.router.es*/
+  private readonly router: Router = inject(Router);
 
-  // eslint-disable-next-line @angular-eslint/prefer-inject
-  constructor(private router: Router) { }
+
+  constructor() {addIcons({logoInstagram, logoYoutube, logoTwitter, logoTiktok, logoX, add, addCircle}) };
 
   ngOnInit() {
 
 
   }
 
-  /*Esto recoge la categoria del boton del html, ejemplo "rifles" o "pistolas"*/
+  /*Esta funcion recoje la palabra(type) y la envia mediante el 'router.navigate' al app.route.ts(ver la ruta)
+   a la direccion "/categoria/'TipoArma'"  */
   protected abrirCategoria(type: string) {
     this.router.navigate(['/categorias', type]);
   }

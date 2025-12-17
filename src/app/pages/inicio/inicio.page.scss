@@ -34,6 +34,8 @@ ion-header ion-toolbar{
 .bg-card{
   background: transparent !important;
   border: solid 2px black;
+  width: 27vw;
+  height: 18vh;
 }
 
 .center-button{
@@ -57,3 +59,7 @@ ion-header ion-toolbar{
   --background-activated: transparent !important;
   --background-selected: transparent !important;
  }
+
+.fab-elevado{
+  bottom: 90px;
+}

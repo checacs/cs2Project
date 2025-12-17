@@ -47,3 +47,14 @@ ion-modal ion-card{
 
 }
 
+.search-gradient {
+  --background: linear-gradient(
+      360deg,
+      #838efb,
+      #fff,
+      #D8B488FF
+  );
+}
+.margen-izq{
+  margin-left: 35px;
+}

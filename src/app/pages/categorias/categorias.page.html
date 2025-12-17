@@ -9,6 +9,7 @@
       </ion-menu-toggle>
     </ion-buttons>
   </ion-toolbar>
+  <ion-searchbar class="search-gradient" [mode]="'ios'" [animated]="true" (ionInput)="buscar($event)"></ion-searchbar>
 </ion-header>
 
 <ion-content class="ion-padding bg-gradient">
@@ -38,8 +39,9 @@
               <ion-toolbar>
                 <ion-buttons slot="start">
                   <ion-button class="ion-align-content-center" color="success"
-                              (click)="addFavoritos(skin.id)">
-                    Añadir a Favoritos</ion-button>
+                              (click)="addFavoritos(skin); modal.dismiss()">
+                    <h6 class="margen-izq">Añadir a Favoritos</h6>
+                    </ion-button>
                 </ion-buttons>
               </ion-toolbar>
             </ion-footer>

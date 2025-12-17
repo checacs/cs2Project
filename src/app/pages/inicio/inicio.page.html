@@ -4,6 +4,7 @@
       <img src="/assets/images/header.png" routerLink="/">
     </div>
   </ion-toolbar>
+
 </ion-header>
 
 <ion-content class="ion-padding bg-gradient">
@@ -11,8 +12,10 @@
     <ion-row class="">
       <ion-col>
         <ion-item class="items-transparente">
+          <!--Esta funcion(ver funcion) manda la palabra que hay entre comillas simples a la pagina categorias y
+          categorias la usa como filtro para ver solo los elementos de ese tipo de armas-->
           <ion-buttons (click)="abrirCategoria('Rifles')" class="boton-transparent">
-            <ion-card class="bg-card">
+            <ion-card class="bg-card size-card">
               <ion-card-header>
                 <img class="img-botones" src="/assets/images/categoria-rifles.png" alt="Categoria Rifles">
               </ion-card-header>
@@ -97,9 +100,7 @@
                 <img class="img-botones" src="/assets/images/categoria-heavy.png" alt="Categoria Heavy">
               </ion-card-header>
               <ion-card-content class="center-button">
-
-                <ion-card-title class="card-content">Cajas</ion-card-title>
-
+                <ion-card-title class="card-content">Pesadas</ion-card-title>
               </ion-card-content>
             </ion-card>
           </ion-buttons>
@@ -107,4 +108,28 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-fab slot="fixed" horizontal="end" vertical="bottom" class="fab-elevado">
+    <ion-fab-button color="primary">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-fab-button>
+    <!--el ion-fab-list es un submenu que se abre dentro del fab y le puedo decir hacia donde quiero que abra. Recuerda
+    que si el fab está a la derecha el fab-list debe abrir hacia la izquierda-->
+    <ion-fab-list side="start">
+      <ion-fab-button href="https://www.tiktok.com/@skin.place">
+        <ion-icon name="logo-tiktok"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button href="https://x.com/TechsavvyCS">
+        <ion-icon name="logo-x"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+    <ion-fab-list side="top">
+      <ion-fab-button color="youtube" href="https://www.youtube.com/@skinland_market/shorts">
+        <ion-icon color="light" name="logo-youtube"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button href="https://www.instagram.com/skinflow.gg/">
+        <ion-icon name="logo-instagram"></ion-icon>
+      </ion-fab-button>
+
+    </ion-fab-list>
+  </ion-fab>
 </ion-content>
