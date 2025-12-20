@@ -31,7 +31,7 @@ import {MenuComponent} from "../../components/menu/menu.component";
     IonRouterLink, RouterModule, IonInfiniteScroll,
     IonInfiniteScrollContent, IonButtons, IonMenuToggle, IonImg,
     IonModal, IonFooter, IonButton, IonItem, IonBackButton, IonItemSliding,
-    IonLabel, IonList, IonThumbnail, IonSearchbar]
+    IonLabel, IonList, IonThumbnail, IonSearchbar, IonAvatar]
 
 })
 export class CategoriasPage implements OnInit {
@@ -141,8 +141,8 @@ export class CategoriasPage implements OnInit {
   }
   /*Cada vez que se escribe una letra en el buscador ionic lanza esta funcion*/
   protected buscar(event: any) {
-    /*Esto recoge en la palabra texto el evento convertido en minusculas*/
-    const texto = event.detail.value?.toLowerCase() || '';
+    /*Esto recoge en la palabra texto el evento convertido en minusculas y el "trim" es para evitar espacios*/
+    const texto = event.detail.value?.toLowerCase().trim();
     this.textoBuscar = texto;
     /*Esto dice que si no hay nada escrito devuelve la skinsList con la info de skinsListOriginal*/
     if (!texto) {
@@ -151,7 +151,7 @@ export class CategoriasPage implements OnInit {
     }
     /*Pero si hay escrito en el buscador mira dentro de skinsListOriginal el "textoBuscar" y si existe muestra el valor
     guardado en skinList*/
-    this.skinsList = this.skinsListOriginal.filter(skin => skin.name.includes(this.textoBuscar));
+    this.skinsList = this.skinsListOriginal.filter(skin => skin.name.toLowerCase().includes(this.textoBuscar));
 
   }
 }

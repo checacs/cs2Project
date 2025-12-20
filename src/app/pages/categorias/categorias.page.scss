@@ -1,10 +1,10 @@
 .logo-title{
   display: flex;
-  justify-content: center;
-  align-items: center;
+
+
 }
 .logo-title img{
-  height: 70px;
+  height: 90px;
   display: flex;
   border-radius: 5px;
 }
@@ -31,12 +31,12 @@ ion-item {
   --background: transparent !important;
 
 }
-ion-modal{
+ion-modal {
   --border-radius: 15px;
-  --height: 50vh;
-  --width: 68vw;
-
+  --height: 55vh;
+  --width: 95vw;
 }
+
 ion-modal ion-card{
   --border-radius: 15px;
 
@@ -54,7 +54,11 @@ ion-modal ion-card{
       #fff,
       #D8B488FF
   );
+  --placeholder-color: #000000;
 }
 .margen-izq{
-  margin-left: 35px;
+  margin-left: 93px;
+}
+ion-searchbar{
+  --placeholder-color: #000000;
 }

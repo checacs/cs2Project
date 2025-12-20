@@ -7,7 +7,7 @@ import {
   IonContent, IonFab, IonFabButton, IonFabList, IonGrid,
   IonHeader,
   IonIcon,
-  IonImg, IonItem, IonList, IonRouterLink, IonRow, IonSearchbar,
+  IonImg, IonItem, IonList, IonMenuToggle, IonRouterLink, IonRow, IonSearchbar,
   IonTitle,
   IonToolbar
 } from '@ionic/angular/standalone';
@@ -25,7 +25,7 @@ import {add, addCircle, logoInstagram, logoTiktok, logoTwitter, logoX, logoYoutu
   standalone: true,
   imports: [IonContent, IonHeader, IonToolbar, CommonModule, FormsModule,
     IonRouterLink, IonGrid, IonRow, IonCol, IonCard, IonCardHeader,
-    IonCardContent, IonCardTitle, IonButton, IonItem, IonButtons, IonFab, IonFabButton, IonFabList, IonIcon]
+    IonCardContent, IonCardTitle, IonButton, IonItem, IonButtons, IonFab, IonFabButton, IonFabList, IonIcon, IonAvatar, IonMenuToggle]
 })
 export class InicioPage implements OnInit {
   private readonly dataService: DataService = inject(DataService);

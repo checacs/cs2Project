@@ -1,8 +1,15 @@
 <ion-header class="">
   <ion-toolbar>
-    <div class="logo-title ion-padding">
-      <img src="/assets/images/header.png" routerLink="/">
+    <div slot="start" class="logo-title ion-padding">
+      <img src="/assets/images/header2.png" routerLink="/">
     </div>
+    <ion-buttons slot="end">
+      <ion-menu-toggle menu="menu-lateral">
+        <ion-avatar>
+          <img src="/assets/images/iconmenu.webp">
+        </ion-avatar>
+      </ion-menu-toggle>
+    </ion-buttons>
   </ion-toolbar>
 
 </ion-header>
@@ -11,7 +18,7 @@
   <ion-grid>
     <ion-row class="">
       <ion-col>
-        <ion-item class="items-transparente">
+        <ion-item class="items-transparente" lines="none">
           <!--Esta funcion(ver funcion) manda la palabra que hay entre comillas simples a la pagina categorias y
           categorias la usa como filtro para ver solo los elementos de ese tipo de armas-->
           <ion-buttons (click)="abrirCategoria('Rifles')" class="boton-transparent">
@@ -29,7 +36,7 @@
         </ion-item>
       </ion-col>
       <ion-col>
-        <ion-item class="items-transparente">
+        <ion-item class="items-transparente" lines="none">
           <ion-buttons (click)="abrirCategoria('Pistols')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
@@ -46,7 +53,7 @@
 
       </ion-col>
       <ion-col>
-        <ion-item class="items-transparente">
+        <ion-item class="items-transparente" lines="none">
           <ion-buttons (click)="abrirCategoria('SMGs')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
@@ -62,7 +69,7 @@
         </ion-item>
       </ion-col>
       <ion-col>
-        <ion-item class="items-transparente">
+        <ion-item class="items-transparente" lines="none">
           <ion-buttons (click)="abrirCategoria('Knives')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
@@ -77,7 +84,7 @@
         </ion-item>
       </ion-col>
       <ion-col>
-        <ion-item class="items-transparente">
+        <ion-item class="items-transparente" lines="none">
           <ion-buttons (click)="abrirCategoria('Gloves')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>
@@ -93,7 +100,7 @@
         </ion-item>
       </ion-col>
       <ion-col>
-        <ion-item class="items-transparente">
+        <ion-item class="items-transparente" lines="none">
           <ion-buttons (click)="abrirCategoria('Heavy')" class="boton-transparent">
             <ion-card class="bg-card">
               <ion-card-header>

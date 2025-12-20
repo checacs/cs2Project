@@ -2,14 +2,19 @@
   <ion-toolbar>
     <ion-back-button slot="start" routerLink="/"></ion-back-button>
     <div class="logo-title ion-padding">
-      <img src="/assets/images/header.png" routerLink="/" alt="">
+      <img src="/assets/images/header2.png" routerLink="/" alt="">
     </div>
     <ion-buttons slot="end">
       <ion-menu-toggle menu="menu-lateral">
+        <ion-avatar>
+          <img src="assets/images/iconmenu.webp">
+        </ion-avatar>
       </ion-menu-toggle>
     </ion-buttons>
   </ion-toolbar>
-  <ion-searchbar class="search-gradient" [mode]="'ios'" [animated]="true" (ionInput)="buscar($event)"></ion-searchbar>
+  <ion-searchbar class="search-gradient" mode="ios" [animated]="true"
+                 placeholder = "Buscar armas"
+                 (ionInput)="buscar($event)"></ion-searchbar>
 </ion-header>
 
 <ion-content class="ion-padding bg-gradient">
@@ -35,8 +40,8 @@
                 <h4>Tipo arma: {{skin.weapon.name}}</h4>
               </ion-card-content>
             </ion-card>
-            <ion-footer>
-              <ion-toolbar>
+            <ion-footer class="ion-no-border">
+              <ion-toolbar >
                 <ion-buttons slot="start">
                   <ion-button class="ion-align-content-center" color="success"
                               (click)="addFavoritos(skin); modal.dismiss()">
