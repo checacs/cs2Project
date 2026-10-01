@@ -109,7 +109,7 @@ export class CategoriasPage implements OnInit {
           /*y aqui decimos que la pagina actual lleva 20 elementos*/
           this.paginaActual = this.pageSize;
 
-                                        //Esto recoge el valor de "this.type" seleccionado y lo muestra
+          //Esto recoge el valor de "this.type" seleccionado y lo muestra
           this.toastService.mostrarToast(`Lista ${this.type} cargada correctamente!`, 'primary',
             1200, "bottom");
         },

@@ -1,0 +1,22 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">Search-bar</ion-title>
+  </ion-toolbar>
+  <!--el placeholder es el "Search" de dentro del buscador-->
+  <ion-searchbar mode="ios"
+                 [animated]="true"
+                 placeholder="Buscar skins"
+                 (ionInput)="buscar($event)"></ion-searchbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list><!--En listaAlbums vamos a hacer un filtro del textoabuscar en la variable 'title' del Array JPH  -->
+    @for (skin of skinsList | filtro: textoBuscar: 'name'; track skin.id){
+      <ion-item>{{skin.name}}</ion-item>
+    }
+  </ion-list>
+</ion-content>
+
